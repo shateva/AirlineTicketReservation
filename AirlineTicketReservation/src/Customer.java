@@ -16,7 +16,20 @@ public class Customer {
     String[] flights;
 
     public void register() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter Name:");
+        this.Name = scan.nextLine();
 
+        System.out.println("Enter Sex (M or F):");
+        this.Sex = scan.nextLine();
+
+        System.out.println("Enter Email Address:");
+        this.Email = scan.nextLine();
+
+        System.out.println("Enter Phone Number:");
+        this.phoneNumber = scan.nextLine();
+
+        
     }
 
     public void login() {
@@ -27,6 +40,9 @@ public class Customer {
 
     }
 
+    public static void main (String[] args) {
+
+    }
 
 }
 //hello
