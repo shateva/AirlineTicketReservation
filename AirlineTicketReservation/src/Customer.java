@@ -13,6 +13,7 @@ public class Customer {
    // int Payment;
    // String[] flights;
 
+   
     
     public Customer(String Name, String Sex) {
 		this.Name = Name;		
@@ -46,9 +47,14 @@ public class Customer {
 
     }
 
-  
+  private static void main (String[] args) {
+	 Customer test1 = new Customer("Amir","Male");
+	 System.out.println(test1);
+  }
 
 }
+
+
 //hello
 //amir
 // beep boop

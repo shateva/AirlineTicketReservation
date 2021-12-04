@@ -10,15 +10,15 @@ public class Main {
 		String driver = "com.mysql.cj.jdbc.Driver";
 		String username = "ZX9ytPMHo0";
 		String password = "4HkTydGmHY";
-		try {
-			Class.forName(driver).getDeclaredConstructor().newInstance();
-			conn = DriverManager.getConnection(url+dbname, username, password);
-			System.out.println("Connected to the database");
-			conn.close();
-			System.out.println("Disconnected from database");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		try {
+//			Class.forName(driver).getDeclaredConstructor().newInstance();
+//			conn = DriverManager.getConnection(url+dbname, username, password);
+//			System.out.println("Connected to the database");
+//			conn.close();
+//			System.out.println("Disconnected from database");
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		
 		/* // TODO Auto-generated method stub
 		Customer friend1 = new Customer("Mickey", "Female");
