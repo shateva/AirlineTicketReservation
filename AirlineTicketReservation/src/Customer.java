@@ -6,21 +6,21 @@ public class Customer {
     // template for using scanner class for asking user to input name
         
     String Name;
-    String Sex;
+   //String Sex;
    // String DOB;
    // String Email;
-    //int phoneNumber;
+    String phoneNumber;
    // int Payment;
    // String[] flights;
 
     
-    public Customer(String Name, String Sex) {
+    public Customer(String Name, String phoneNumber) {
 		this.Name = Name;		
-		this.Sex = Sex;
+		this.phoneNumber = phoneNumber;
 	}
     
     public String getCustomer(){
-		return Name + Sex;
+		return Name + phoneNumber;
 	}
     
     public void register() {
@@ -28,8 +28,8 @@ public class Customer {
         System.out.println("Enter Name: ");
         this.Name = scan.nextLine();
 
-        System.out.println("Enter Sex (M or F): ");
-        this.Sex = scan.nextLine();
+        System.out.println("Enter phone number: ");
+        this.phoneNumber = scan.nextLine();
 
         //System.out.println("Enter Email Address:");
        // this.Email = scan.nextLine();
