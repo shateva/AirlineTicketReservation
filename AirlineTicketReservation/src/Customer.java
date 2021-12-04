@@ -2,32 +2,38 @@ import java.util.Scanner;
 
 public class Customer {
     // this is a test
-    Scanner n = new Scanner(System.in);
-    System.out.println("What is your name?");
-    String name = n.nextLine();
+    
     // template for using scanner class for asking user to input name
         
     String Name;
-    char Sex;
-    String DOB;
-    String Email;
-    int phoneNumber;
-    int Payment;
-    String[] flights;
+    String Sex;
+   // String DOB;
+   // String Email;
+    //int phoneNumber;
+   // int Payment;
+   // String[] flights;
 
+    
+    public Customer(String Name, String Sex) {
+		this.Name = Name;		
+		this.Sex = Sex;
+	}
+    
+    public String getCustomer(){
+		return Name + Sex;
+	}
+    
     public void register() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Enter Name:");
+        System.out.println("Enter Name: ");
         this.Name = scan.nextLine();
 
         System.out.println("Enter Sex (M or F):");
         this.Sex = scan.nextLine();
 
-        System.out.println("Enter Email Address:");
-        this.Email = scan.nextLine();
+        //System.out.println("Enter Email Address:");
+       // this.Email = scan.nextLine();
 
-        System.out.println("Enter Phone Number:");
-        this.phoneNumber = scan.nextLine();
 
         
     }
@@ -40,9 +46,12 @@ public class Customer {
 
     }
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
+    	Customer friend1 = new Customer("Mickey", "Female");
+		friend1.register();
+		System.out.println(friend1.getCustomer());
 
-    }
+      }
 
 }
 //hello
