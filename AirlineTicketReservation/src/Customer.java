@@ -28,7 +28,7 @@ public class Customer {
         System.out.println("Enter Name: ");
         this.Name = scan.nextLine();
 
-        System.out.println("Enter Sex (M or F):");
+        System.out.println("Enter Sex (M or F): ");
         this.Sex = scan.nextLine();
 
         //System.out.println("Enter Email Address:");
@@ -46,12 +46,7 @@ public class Customer {
 
     }
 
-    public static void main(String[] args) {
-    	Customer friend1 = new Customer("Mickey", "Female");
-		friend1.register();
-		System.out.println(friend1.getCustomer());
-
-      }
+  
 
 }
 //hello
