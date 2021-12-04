@@ -6,22 +6,24 @@ public class Customer {
     // template for using scanner class for asking user to input name
         
     String Name;
-    String Sex;
+   //String Sex;
    // String DOB;
    // String Email;
-    //int phoneNumber;
+    String phoneNumber;
+    String password;
    // int Payment;
    // String[] flights;
 
    
     
-    public Customer(String Name, String Sex) {
+    public Customer(String Name, String phoneNumber, String password) {
 		this.Name = Name;		
-		this.Sex = Sex;
+		this.phoneNumber = phoneNumber;
+		this.password = password;
 	}
     
     public String getCustomer(){
-		return Name + Sex;
+		return Name + phoneNumber + password;
 	}
     
     public void register() {
@@ -29,8 +31,11 @@ public class Customer {
         System.out.println("Enter Name: ");
         this.Name = scan.nextLine();
 
-        System.out.println("Enter Sex (M or F): ");
-        this.Sex = scan.nextLine();
+        System.out.println("Enter phone number: ");
+        this.phoneNumber = scan.nextLine();
+        
+        System.out.println("Enter new password: ");
+        this.password = scan.nextLine();
 
         //System.out.println("Enter Email Address:");
        // this.Email = scan.nextLine();
@@ -40,17 +45,21 @@ public class Customer {
     }
 
     public void login() {
+    	Scanner scan = new Scanner(System.in);
+    	System.out.println("Enter Name: ");
+    	String name = scan.nextLine();
+//    	if this.Name not in database{
+//    		print('no user in data with that name')
+//    	else{
+    	System.out.println("Enter Password: ");
+    	String password = scan.nextLine();
+//    	if this.Password not = password{
+//    		print('invalid password')
+//    	else{
+//    		allow login
+    	
 
     }
-
-    public void customerInfo() {
-
-    }
-
-  private static void main (String[] args) {
-	 Customer test1 = new Customer("Amir","Male");
-	 System.out.println(test1);
-  }
 
 }
 

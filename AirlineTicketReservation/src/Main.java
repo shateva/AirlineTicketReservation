@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {	
 		System.out.println("MySQL connect example.");
 		Connection conn = null;
 		String url = "jdbc:mysql://remotemysql.com:3306/";
@@ -20,11 +20,11 @@ public class Main {
 //			e.printStackTrace();
 //		}
 		
-		/* // TODO Auto-generated method stub
-		Customer friend1 = new Customer("Mickey", "Female");
+		 // TODO Auto-generated method stub
+		Customer friend1 = new Customer("Null", "000");
 		friend1.register();
 		System.out.println(friend1.getCustomer());
-		*/
+		
 	}
 
 }
