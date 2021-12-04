@@ -53,8 +53,8 @@ public class Flight {
 	    }
 	    
 	    public void delayFlight() {
-	    	System.out.println("Enter new Flight Departure Time: ");
-	        this.departureTime = scan.nextLine();
+	    //	System.out.println("Enter new Flight Departure Time: ");
+	    //    this.departureTime = scan.nextLine();
 //	    	update departure time in database
 	    }
 }

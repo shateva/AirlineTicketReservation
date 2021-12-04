@@ -10,20 +10,21 @@ public class Customer {
    // String DOB;
    // String Email;
     String phoneNumber;
-    String password;
+    //String password;
    // int Payment;
    // String[] flights;
 
    
     
-    public Customer(String Name, String phoneNumber, String password) {
+    public Customer(String Name, String phoneNumber /*String password*/) {
 		this.Name = Name;		
 		this.phoneNumber = phoneNumber;
-		this.password = password;
+		//this.password = password;
 	}
     
+    
     public String getCustomer(){
-		return Name + phoneNumber + password;
+		return Name + phoneNumber;//+ password;
 	}
     
     public void register() {
@@ -34,8 +35,8 @@ public class Customer {
         System.out.println("Enter phone number: ");
         this.phoneNumber = scan.nextLine();
         
-        System.out.println("Enter new password: ");
-        this.password = scan.nextLine();
+      //  System.out.println("Enter new password: ");
+       // this.password = scan.nextLine();
 
         //System.out.println("Enter Email Address:");
        // this.Email = scan.nextLine();
