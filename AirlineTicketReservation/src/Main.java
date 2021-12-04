@@ -14,8 +14,8 @@ public class Main {
 			Class.forName(driver).getDeclaredConstructor().newInstance();
 			conn = DriverManager.getConnection(url+dbname, username, password);
 			System.out.println("Connected to the database");
-		//	conn.close();
-		//	System.out.println("Disconnected from database");
+			conn.close();
+			System.out.println("Disconnected from database");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
