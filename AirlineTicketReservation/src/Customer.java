@@ -5,41 +5,56 @@ public class Customer {
     
     // template for using scanner class for asking user to input name
         
-    String Name;
-   //String Sex;
-   // String DOB;
-   // String Email;
+    String firstName;
+    String lastName;
+    String Sex;
+    String DOB;
+    String Email;
     String phoneNumber;
-    //String password;
+    String password;
    // int Payment;
    // String[] flights;
 
    
     
-    public Customer(String Name, String phoneNumber /*String password*/) {
-		this.Name = Name;		
+    public Customer(String firstName, String lastName, String phoneNumber, String Sex, String DOB, String Email, String password /*String password*/) {
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
-		//this.password = password;
+		this.DOB = DOB;
+		this.Email = Email;
+		this.Sex = Sex;
+		this.password = password;
+		
 	}
     
     
     public String getCustomer(){
-		return Name + phoneNumber;//+ password;
+		return firstName + lastName + phoneNumber;//+ password;
 	}
     
     public void register() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Enter Name: ");
-        this.Name = scan.nextLine();
+        System.out.println("Enter First Name: ");
+        this.firstName = scan.nextLine();
 
-        System.out.println("Enter phone number: ");
+        System.out.println("Enter Last Name: ");
+        this.lastName = scan.nextLine();
+        
+        System.out.println("Enter Sex: ");
+        this.Sex = scan.nextLine();
+        
+        System.out.println("Enter Phone Number: ");
         this.phoneNumber = scan.nextLine();
         
-      //  System.out.println("Enter new password: ");
-       // this.password = scan.nextLine();
+        System.out.println("Enter Date of Birth: ");
+        this.DOB = scan.nextLine();
 
-        //System.out.println("Enter Email Address:");
-       // this.Email = scan.nextLine();
+        System.out.println("Enter Email Address:");
+        this.Email = scan.nextLine();
+        
+        System.out.println("Enter new password: ");
+        this.password = scan.nextLine();
 
 // s.executeQuery("select Name, phoneNumber, password from customers")
         // String CustomerQuery = (SELECT Name, phoneNumber,from customers;

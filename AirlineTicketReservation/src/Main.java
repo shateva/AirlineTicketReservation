@@ -9,10 +9,10 @@ public class Main {
 		String dbname = "ZX9ytPMHo0";
 		String driver = "com.mysql.cj.jdbc.Driver";
 		String username = "ZX9ytPMHo0"; 
-		String password = "4HkTydGmHY";
+		String pass = "4HkTydGmHY";
 		try {
 			Class.forName(driver).getDeclaredConstructor().newInstance();
-			conn = DriverManager.getConnection(url+dbname, username, password);
+			conn = DriverManager.getConnection(url+dbname, username, pass);
 			System.out.println("Connected to the database");
 			//conn.close();
 			//System.out.println("Disconnected from database");
@@ -21,15 +21,21 @@ public class Main {
 		}
 		
 		 // TODO Auto-generated method stub
-		Customer friend1 = new Customer("Null", "000");
+		Customer friend1 = new Customer("Null","Null", "000", "Null", "Null", "Null", "Null");
         friend1.register();
         System.out.println(friend1.getCustomer());
-        String name = friend1.Name;
+        String firstName = friend1.firstName;
+        String lastName = friend1.lastName;
+        String Sex = friend1.Sex;
         String number = friend1.phoneNumber;
+        String DOB = friend1.DOB;
+        String Email = friend1.Email;
+        String password = friend1.password;
+        
         try {
             
             Statement s=conn.createStatement();
-            s.executeUpdate("INSERT INTO `customers`(firstName, phoneNumber) VALUE ('"+name+"','"+number+"')");
+            s.executeUpdate("INSERT INTO `customers`() VALUE (default, '"+firstName+"','"+lastName+"','"+Sex+"','"+number+"','"+DOB+"','"+Email+"','"+password+"')");
             
             
 //            String CustomerQuery = ("SELECT (Name, phoneNumber) from 'customers'");
@@ -38,10 +44,15 @@ public class Main {
             ResultSet rs = s.executeQuery(sql);
             
             while(rs.next()) {
-            	String name1 = rs.getString("firstName");
+            	String firstname1 = rs.getString("firstName");
+            	String lastname1 = rs.getString("lastName");
+            	String sex1 = rs.getString("Sex");
             	String number1 = rs.getString("phoneNumber");
+            	String DOB1 = rs.getString("DOB");
+            	String Email1 = rs.getString("Email");
+            	String Password1 = rs.getString("password");
             	
-            	System.out.format("%s, %s\n", name1, number1);
+            	System.out.format("%s, %s\n", firstname1, lastname1, sex1, number1, DOB1, Email1, Password1);
             }
             s.close();
         } catch (SQLException e) {
