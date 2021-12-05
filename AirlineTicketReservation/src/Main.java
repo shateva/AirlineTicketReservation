@@ -30,8 +30,20 @@ public class Main {
             
             Statement s=conn.createStatement();
             s.executeUpdate("INSERT INTO `customers`(firstName, phoneNumber) VALUE ('"+name+"','"+number+"')");
-            s.close();
             
+            
+//            String CustomerQuery = ("SELECT (Name, phoneNumber) from 'customers'");
+//            s.executeQuery(CustomerQuery);
+            String sql = "select * from customers";
+            ResultSet rs = s.executeQuery(sql);
+            
+            while(rs.next()) {
+            	String name1 = rs.getString("firstName");
+            	String number1 = rs.getString("phoneNumber");
+            	
+            	System.out.format("%s, %s\n", name1, number1);
+            }
+            s.close();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

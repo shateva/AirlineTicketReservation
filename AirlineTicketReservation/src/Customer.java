@@ -41,8 +41,9 @@ public class Customer {
         //System.out.println("Enter Email Address:");
        // this.Email = scan.nextLine();
 
-
-        
+// s.executeQuery("select Name, phoneNumber, password from customers")
+        // String CustomerQuery = (SELECT Name, phoneNumber,from customers;
+       // s.executeQuery(CustomerQuery);
     }
 
     public void login() {
