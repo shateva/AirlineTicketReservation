@@ -70,8 +70,7 @@ public class Main {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
-        System.out.format("%s", friend1.customerId);
+   
         friend1.reserveFlight();
 	}
 
