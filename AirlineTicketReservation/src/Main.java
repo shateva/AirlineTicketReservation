@@ -122,23 +122,6 @@ public class Main {
             else if (customerChoice == 2) {
                 friend1.register();
                 System.out.println(friend1.getCustomer());
-                firstName = friend1.firstName;
-                lastName = friend1.lastName;
-                Sex = friend1.Sex;
-                number = friend1.phoneNumber;
-                DOB = friend1.DOB;
-                Email = friend1.Email;
-                password = friend1.password;
-                
-                try {
-                    
-                    Statement s=conn.createStatement();
-                    s.executeUpdate("INSERT INTO `customers`() VALUE (default, '"+firstName+"','"+lastName+"','"+Sex+"','"+number+"','"+DOB+"','"+Email+"','"+password+"')");
-                    s.close();
-                } catch (SQLException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }    
             }
         }else if (choice == 2){
         	System.out.println("working");

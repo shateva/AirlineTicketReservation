@@ -1,3 +1,8 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class Flight {
@@ -60,6 +65,53 @@ public class Flight {
 	    //	System.out.println("Enter new Flight Departure Time: ");
 	    //    this.departureTime = scan.nextLine();
 //	    	update departure time in database
+	    }
+	    
+	    public void getAllFlights() {
+	    	System.out.println("MySQL connect example.");
+			Connection conn = null;
+			String url = "jdbc:mysql://remotemysql.com:3306/";
+			String dbname = "ZX9ytPMHo0";
+			String driver = "com.mysql.cj.jdbc.Driver";
+			String username = "ZX9ytPMHo0"; 
+			String pass = "4HkTydGmHY";
+			try {
+				Class.forName(driver).getDeclaredConstructor().newInstance();
+				conn = DriverManager.getConnection(url+dbname, username, pass);
+				//conn.close();
+				//System.out.println("Disconnected from database");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			 // TODO Auto-generated method stub
+			Scanner scans = new Scanner(System.in);
+	    	System.out.println("Enter Destination");
+            String enteredDestination = scans.nextLine();
+            
+            try {
+            	Statement s=conn.createStatement();
+            	String sql = "SELECT * FROM flights";
+                ResultSet rs = s.executeQuery(sql);
+                
+                while(rs.next()) {
+            		String flightId = rs.getString("id_flights");
+            		String flightDestination = rs.getString("destination");
+            		String flightDeparture = rs.getString("departureLoc");
+            		String flightDepartureTime = rs.getString("departureTime");
+            		String flightArrivalTime = rs.getString("arrivalTime");
+            		String flightDuration = rs.getString("duration");
+            		String flightDate = rs.getString("date");
+            		String flightSeats = rs.getString("seats");
+            		
+            		System.out.println("ID | Destination | Departure | Departure | Time | Arrival | Time | Duration | Date | Seats");
+            		System.out.format("%s | %s | %s | %s | %s | %s | %s | %s\n", flightId, flightDestination, flightDeparture, flightDepartureTime, flightArrivalTime, flightDuration, flightDate, flightSeats);
+       
+                }
+                s.close();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
 	    }
 }
 
