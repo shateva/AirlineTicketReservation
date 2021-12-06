@@ -1,6 +1,10 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class Main {
+	public void login() {
+    	
+    }
 
 	public static void main(String[] args) {	
 		System.out.println("MySQL connect example.");
@@ -21,11 +25,52 @@ public class Main {
 		}
 		
 		 // TODO Auto-generated method stub
-		Customer friend1 = new Customer("Null", "000");
-        friend1.register();
-        System.out.println(friend1.getCustomer());
-        String name = friend1.Name;
-        String number = friend1.phoneNumber;
+		Scanner scan = new Scanner(System.in);
+        System.out.println("Customer or Admin");
+        String choice = scan.nextLine();
+        
+        String name = "null";
+        String number = "null";
+        
+        if (choice == "1") {
+        	System.out.println("Login or Register");
+            String customerChoice = scan.nextLine();
+            
+            if (customerChoice == "1") {
+            	System.out.println("email");
+                String enteredEmail = scan.nextLine();
+                System.out.println("password");
+                String enteredPassword = scan.nextLine();
+                
+                String userEmail = "null";
+                String userPassword = "null";
+                String id = "null";
+                
+                try {
+                    
+                    Statement s=conn.createStatement();                    
+             
+                    userEmail = "select email from customers where email=" + enteredEmail;
+                    userPassword = "select password from customers where email=" + enteredPassword;
+                    System.out.println(userEmail + userPassword);
+//                    ResultSet rs = s.executeQuery(sql);
+                    
+                    s.close();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                      
+            }
+            else if (customerChoice == "2") {
+            	Customer friend1 = new Customer("Null", "000");
+                friend1.register();
+                System.out.println(friend1.getCustomer());
+                name = friend1.Name;
+                number = friend1.phoneNumber;
+            }
+        }
+        
         try {
             
             Statement s=conn.createStatement();
@@ -37,12 +82,12 @@ public class Main {
             String sql = "select * from customers";
             ResultSet rs = s.executeQuery(sql);
             
-            while(rs.next()) {
-            	String name1 = rs.getString("firstName");
-            	String number1 = rs.getString("phoneNumber");
-            	
-            	System.out.format("%s, %s\n", name1, number1);
-            }
+//            while(rs.next()) {
+//            	String name1 = rs.getString("firstName");
+//            	String number1 = rs.getString("phoneNumber");
+//            	
+//            	System.out.format("%s, %s\n", name1, number1);
+//            }
             s.close();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
