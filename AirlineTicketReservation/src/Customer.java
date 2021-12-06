@@ -39,6 +39,56 @@ public class Customer {
 	}
     
     
+    
+    
+    public void cancelFlight() {
+    	
+    	
+    
+    	
+		String flightHold = null;
+		    	
+        
+        
+    	System.out.println("MySQL connect example.");
+		Connection conn = null;
+		String url = "jdbc:mysql://remotemysql.com:3306/";
+		String dbname = "ZX9ytPMHo0";
+		String driver = "com.mysql.cj.jdbc.Driver";
+		String username = "ZX9ytPMHo0"; 
+		String pass = "4HkTydGmHY";
+		
+		
+		try {
+			Class.forName(driver).getDeclaredConstructor().newInstance();
+			conn = DriverManager.getConnection(url+dbname, username, pass);
+			//conn.close();
+			//System.out.println("Disconnected from database");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		 // TODO Auto-generated method stub
+
+        	
+            Scanner scan2 = new Scanner(System.in);
+    	    System.out.println("Enter destination (available destinations are printed above): ");
+    	    flightHold = scan2.nextLine();
+    	    
+    	    Statement y;
+			try {
+				y = conn.createStatement();
+				y.executeQuery("DELETE FROM `orders` WHERE id_flights = '"+flightHold+"' AND id_customers = '"+flightHold+"'");
+
+				  
+	            y.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    }
+            
+ 
+    
     public void reserveFlight() {
     	
 		String flightHold = null;
