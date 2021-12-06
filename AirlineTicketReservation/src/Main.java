@@ -24,21 +24,11 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		
-		
-		 // TODO Auto-generated method stub
-
-		
-		String firstName = "null";
-        String lastName = "null";
-        String Sex = "null";
-        String number = "null";
-        String DOB = "null";
-        String Email = "null";
-        String password = "null";
         
         int loggedIn = 0;
         Customer friend1 = new Customer("Null","Null", "000", "Null", "Null", "Null", "Null", 0);
+        Flight flight1 = new Flight("Null", "Null", "Null", "Null", "Null", "Null", "Null", 0);
+        Airline airline1 = new Airline("Null", "Null", "Null");
         
 		Scanner scan = new Scanner(System.in);
         System.out.println("Customer or Admin (1 or 2)");
@@ -49,35 +39,8 @@ public class Main {
             int customerChoice = scan.nextInt();
             
             if (customerChoice == 1) {
-            	Scanner scans = new Scanner(System.in);
-            	
-            	System.out.println("Enter Email");
-                String enteredEmail = scans.nextLine();
-                
-                System.out.println("Enter Password");
-                String enteredPassword = scans.nextLine();
-                
-                String userEmail = "null";
-                String userPassword = "null";
-                String id = "null";
-                
-                try {
-                	Statement s=conn.createStatement();
-                	String sql = "SELECT * FROM customers WHERE email =  '"+enteredEmail+"'";
-                    ResultSet rs = s.executeQuery(sql);
-                    
-                    while(rs.next()) {
-                		if (rs.getString("password").equals(enteredPassword)) {
-                			System.out.println("logged in");
-                			loggedIn = 1;
-                		}
-                    }
-                    s.close();
-                } catch (SQLException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                if (loggedIn == 1){
+                if (friend1.login()){
+                	Scanner scans = new Scanner(System.in);
                     System.out.println("Type '1' to reserve a flight | Type '2' to cancel a flight | Type '3' to see all flights:  ");
                     int answer = scans.nextInt();
                 	if (answer == 1){
@@ -85,34 +48,8 @@ public class Main {
                     } else if (answer == 2) {
                     	System.out.println("Cancel Flight");
                     } else if (answer == 3) {
-                    	System.out.println("Enter Destination");
-                        String enteredDestination = scans.nextLine();
-                        
-                        try {
-                        	Statement s=conn.createStatement();
-                        	String sql = "SELECT * FROM flights";
-                            ResultSet rs = s.executeQuery(sql);
-                            
-                            while(rs.next()) {
-                        		String flightId = rs.getString("id_flights");
-                        		String flightDestination = rs.getString("destination");
-                        		String flightDeparture = rs.getString("departureLoc");
-                        		String flightDepartureTime = rs.getString("departureTime");
-                        		String flightArrivalTime = rs.getString("arrivalTime");
-                        		String flightDuration = rs.getString("duration");
-                        		String flightDate = rs.getString("date");
-                        		String flightSeats = rs.getString("seats");
-                        		
-                        		System.out.println("ID | Destination | Departure | Departure | Time | Arrival | Time | Duration | Date | Seats");
-                        		System.out.format("%s | %s | %s | %s | %s | %s | %s | %s\n", flightId, flightDestination, flightDeparture, flightDepartureTime, flightArrivalTime, flightDuration, flightDate, flightSeats);
-                   
-                            }
-                            s.close();
-                        } catch (SQLException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-                    	
+                    	System.out.println("All flights");
+                    	flight1.getAllFlights(friend1.customerId);
                     }else {
                     	System.out.println("Invalid Choice");
                     }
@@ -121,7 +58,7 @@ public class Main {
             }
             else if (customerChoice == 2) {
                 friend1.register();
-                System.out.println(friend1.getCustomer());
+//                System.out.println(friend1.getCustomer());
             }
         }else if (choice == 2){
         	System.out.println("working");

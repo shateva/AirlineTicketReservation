@@ -39,56 +39,6 @@ public class Customer {
 	}
     
     
-    
-    
-    public void cancelFlight() {
-    	
-    	
-    
-    	
-		String flightHold = null;
-		    	
-        
-        
-    	System.out.println("MySQL connect example.");
-		Connection conn = null;
-		String url = "jdbc:mysql://remotemysql.com:3306/";
-		String dbname = "ZX9ytPMHo0";
-		String driver = "com.mysql.cj.jdbc.Driver";
-		String username = "ZX9ytPMHo0"; 
-		String pass = "4HkTydGmHY";
-		
-		
-		try {
-			Class.forName(driver).getDeclaredConstructor().newInstance();
-			conn = DriverManager.getConnection(url+dbname, username, pass);
-			//conn.close();
-			//System.out.println("Disconnected from database");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		 // TODO Auto-generated method stub
-
-        	
-            Scanner scan2 = new Scanner(System.in);
-    	    System.out.println("Enter destination (available destinations are printed above): ");
-    	    flightHold = scan2.nextLine();
-    	    
-    	    Statement y;
-			try {
-				y = conn.createStatement();
-				y.executeQuery("DELETE FROM `orders` WHERE id_flights = '"+flightHold+"' AND id_customers = '"+flightHold+"'");
-
-				  
-	            y.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-    }
-            
- 
-    
     public void reserveFlight() {
     	
 		String flightHold = null;
@@ -243,19 +193,61 @@ public class Customer {
         }    
     }
 
-    public void login() {
-    	Scanner scan = new Scanner(System.in);
-    	System.out.println("Enter Name: ");
-    	String name = scan.nextLine();
-//    	if this.Name not in database{
-//    		print('no user in data with that name')
-//    	else{
-    	System.out.println("Enter Password: ");
-    	String password = scan.nextLine();
-//    	if this.Password not = password{
-//    		print('invalid password')
-//    	else{
-//    		allow login
+    public boolean login() {
+    	System.out.println("MySQL connect example.");
+		Connection conn = null;
+		String url = "jdbc:mysql://remotemysql.com:3306/";
+		String dbname = "ZX9ytPMHo0";
+		String driver = "com.mysql.cj.jdbc.Driver";
+		String username = "ZX9ytPMHo0"; 
+		String pass = "4HkTydGmHY";
+		try {
+			Class.forName(driver).getDeclaredConstructor().newInstance();
+			conn = DriverManager.getConnection(url+dbname, username, pass);
+			//conn.close();
+			//System.out.println("Disconnected from database");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		 // TODO Auto-generated method stub
+		
+		Scanner scans = new Scanner(System.in);
+    	
+    	System.out.println("Enter Email");
+        String enteredEmail = scans.nextLine();
+        
+        System.out.println("Enter Password");
+        String enteredPassword = scans.nextLine();
+        
+        String userEmail = "null";
+        String userPassword = "null";
+        String id = "null";
+        
+        try {
+        	Statement s=conn.createStatement();
+        	String sql = "SELECT * FROM customers WHERE email =  '"+enteredEmail+"'";
+            ResultSet rs = s.executeQuery(sql);
+            
+            while(rs.next()) {
+        		if (rs.getString("password").equals(enteredPassword)) {
+        			System.out.println("logged in");
+        	        this.firstName = rs.getString("firstName");
+        	        this.lastName = rs.getString("lastName");
+        	        this.Sex = rs.getString("sex");
+        	        this.phoneNumber = rs.getString("phoneNumber");
+        	        this.DOB = rs.getString("DOB");
+        	        this.Email = rs.getString("email");
+        	        this.password = rs.getString("password");
+        	        this.customerId = rs.getInt("id_customers");
+        	        return true;
+        		}
+            }
+            s.close();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+		return false;
     	
 
     }

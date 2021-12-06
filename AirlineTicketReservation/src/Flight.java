@@ -67,7 +67,7 @@ public class Flight {
 //	    	update departure time in database
 	    }
 	    
-	    public void getAllFlights() {
+	    public void getAllFlights(int customerId) {
 	    	System.out.println("MySQL connect example.");
 			Connection conn = null;
 			String url = "jdbc:mysql://remotemysql.com:3306/";
@@ -90,21 +90,23 @@ public class Flight {
             
             try {
             	Statement s=conn.createStatement();
-            	String sql = "SELECT * FROM flights";
+            	String sql = "SELECT * FROM orders WHERE id_customers =  '"+customerId+"'";
                 ResultSet rs = s.executeQuery(sql);
                 
                 while(rs.next()) {
-            		String flightId = rs.getString("id_flights");
-            		String flightDestination = rs.getString("destination");
-            		String flightDeparture = rs.getString("departureLoc");
-            		String flightDepartureTime = rs.getString("departureTime");
-            		String flightArrivalTime = rs.getString("arrivalTime");
-            		String flightDuration = rs.getString("duration");
-            		String flightDate = rs.getString("date");
-            		String flightSeats = rs.getString("seats");
-            		
-            		System.out.println("ID | Destination | Departure | Departure | Time | Arrival | Time | Duration | Date | Seats");
-            		System.out.format("%s | %s | %s | %s | %s | %s | %s | %s\n", flightId, flightDestination, flightDeparture, flightDepartureTime, flightArrivalTime, flightDuration, flightDate, flightSeats);
+//            		String flightId = rs.getString("id_flights");
+//            		String flightDestination = rs.getString("destination");
+//            		String flightDeparture = rs.getString("departureLoc");
+//            		String flightDepartureTime = rs.getString("departureTime");
+//            		String flightArrivalTime = rs.getString("arrivalTime");
+//            		String flightDuration = rs.getString("duration");
+//            		String flightDate = rs.getString("date");
+//            		String flightSeats = rs.getString("seats");
+//            		
+//            		System.out.println("ID | Destination | Departure | Departure | Time | Arrival | Time | Duration | Date | Seats");
+//            		System.out.format("%s | %s | %s | %s | %s | %s | %s | %s\n", flightId, flightDestination, flightDeparture, flightDepartureTime, flightArrivalTime, flightDuration, flightDate, flightSeats);
+                	
+                	
        
                 }
                 s.close();
