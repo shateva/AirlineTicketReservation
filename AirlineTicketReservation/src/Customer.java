@@ -17,12 +17,14 @@ public class Customer {
     String Email;
     String phoneNumber;
     String password;
+    int customerId;
+    
    // int Payment;
    // String[] flights;
 
    
     
-    public Customer(String firstName, String lastName, String phoneNumber, String Sex, String DOB, String Email, String password /*String password*/) {
+    public Customer(String firstName, String lastName, String phoneNumber, String Sex, String DOB, String Email, String password /*String password*/, int customerId) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;
@@ -30,6 +32,7 @@ public class Customer {
 		this.Email = Email;
 		this.Sex = Sex;
 		this.password = password;
+		this.customerId = customerId;
 		
 	}
     
@@ -37,6 +40,8 @@ public class Customer {
     public String reserveFlight() {
     	
 String flightHold = null;
+String chosenFlight = null;
+String id_flights2 = null;
     	
     	Scanner scan2 = new Scanner(System.in);
         System.out.println("Enter destination: ");
@@ -60,7 +65,6 @@ String flightHold = null;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		 // TODO Auto-generated method stub
         try {
             
@@ -68,9 +72,8 @@ String flightHold = null;
   
         	ResultSet rs = s.executeQuery("SELECT * FROM flights WHERE destination = '"+flightHold+"'");
         	
-
-        	
         	while (rs.next()) {
+        		int id_flights = rs.getInt("id_flights");
         		String destination = rs.getString("destination");
             	String departureLoc = rs.getString("departureLoc");
             	String departureTime = rs.getString("departureTime");
@@ -79,11 +82,18 @@ String flightHold = null;
             	String date = rs.getString("date");
             	String seats = rs.getString("seats");
             	
-            	System.out.format("%s, %s, %s, %s, %s, %s, %s\n", destination, departureLoc, departureTime, arrivalTime, duration, date, seats);
-        	   
+            	System.out.format("%d, %s, %s, %s, %s, %s, %s, %s\n", id_flights, destination, departureLoc, departureTime, arrivalTime, duration, date, seats);
+
         	}
         	
+        	Scanner scan3 = new Scanner(System.in);
+            System.out.println("Enter the number of the flight you want to reserve a seat for:  ");
+            chosenFlight = scan3.nextLine();
+            
+            
+            s.executeUpdate("INSERT INTO `orders`() VALUE (default, '"+this.customerId+"', '"+chosenFlight+"')");
             s.close();
+            
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

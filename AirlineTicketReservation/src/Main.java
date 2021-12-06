@@ -1,6 +1,8 @@
 import java.sql.*;
 
 public class Main {
+	
+	
 
 	public static void main(String[] args) {	
 		System.out.println("MySQL connect example.");
@@ -23,10 +25,10 @@ public class Main {
 		
 		
 		 // TODO Auto-generated method stub
-		Customer friend1 = new Customer("Null","Null", "000", "Null", "Null", "Null", "Null");
+		Customer friend1 = new Customer("Null","Null", "000", "Null", "Null", "Null", "Null", 0);
 		
-		friend1.reserveFlight();
-		/*
+		
+		
         friend1.register();
         System.out.println(friend1.getCustomer());
         String firstName = friend1.firstName;
@@ -43,12 +45,14 @@ public class Main {
             s.executeUpdate("INSERT INTO `customers`() VALUE (default, '"+firstName+"','"+lastName+"','"+Sex+"','"+number+"','"+DOB+"','"+Email+"','"+password+"')");
             
             
-//            String CustomerQuery = ("SELECT (Name, phoneNumber) from 'customers'");
-//            s.executeQuery(CustomerQuery);
-            String sql = "select * from customers";
-            ResultSet rs = s.executeQuery(sql);
+      	  
+        	ResultSet rs = s.executeQuery("SELECT * FROM customers WHERE firstName = 'Shateva'");
+        	
+      
             
             while(rs.next()) {
+            	int id_customer1 = rs.getInt("id_customers");
+            	friend1.customerId = id_customer1;
             	String firstname1 = rs.getString("firstName");
             	String lastname1 = rs.getString("lastName");
             	String sex1 = rs.getString("Sex");
@@ -56,6 +60,8 @@ public class Main {
             	String DOB1 = rs.getString("DOB");
             	String Email1 = rs.getString("Email");
             	String Password1 = rs.getString("password");
+            	
+           
             	
             	System.out.format("%s, %s\n", firstname1, lastname1, sex1, number1, DOB1, Email1, Password1);
             }
@@ -65,8 +71,8 @@ public class Main {
             e.printStackTrace();
         }
         
-        */
-		
+        System.out.format("%s", friend1.customerId);
+        friend1.reserveFlight();
 	}
 
 }
