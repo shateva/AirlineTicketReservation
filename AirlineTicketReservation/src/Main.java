@@ -46,6 +46,7 @@ public class Main {
                 	if (answer == 1){
                     	friend1.reserveFlight();
                     } else if (answer == 2) {
+                    	friend1.cancelFlight();
                     	System.out.println("Cancel Flight");
                     } else if (answer == 3) {
                     	System.out.println("All flights");

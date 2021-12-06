@@ -65,13 +65,14 @@ public class Customer {
 
         	
             Scanner scan2 = new Scanner(System.in);
-    	    System.out.println("Enter destination (available destinations are printed above): ");
+    	    System.out.println("Enter the flight id of the flight you want to cancel: ");
     	    flightHold = scan2.nextLine();
-    	    
-    	    Statement y;
+    	   
 			try {
+				 
+	    	    Statement y=conn.createStatement();
 				y = conn.createStatement();
-				y.executeQuery("DELETE FROM `orders` WHERE id_flights = '"+flightHold+"' AND id_customers = '"+flightHold+"'");
+				y.executeUpdate("DELETE FROM `orders` WHERE id_flights = '"+flightHold+"' AND id_customers = '"+this.customerId+"'");
 
 				  
 	            y.close();
