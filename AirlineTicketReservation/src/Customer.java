@@ -38,13 +38,57 @@ public class Customer {
 		
 	}
     
+  
+    
+    public void cancelFlight() {
+ 
+		String flightHold = null;
+		    	
+    	System.out.println("MySQL connect example.");
+		Connection conn = null;
+		String url = "jdbc:mysql://remotemysql.com:3306/";
+		String dbname = "ZX9ytPMHo0";
+		String driver = "com.mysql.cj.jdbc.Driver";
+		String username = "ZX9ytPMHo0"; 
+		String pass = "4HkTydGmHY";
+		
+		
+		try {
+			Class.forName(driver).getDeclaredConstructor().newInstance();
+			conn = DriverManager.getConnection(url+dbname, username, pass);
+			//conn.close();
+			//System.out.println("Disconnected from database");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		 // TODO Auto-generated method stub
+
+        	
+            Scanner scan2 = new Scanner(System.in);
+    	    System.out.println("Enter destination (available destinations are printed above): ");
+    	    flightHold = scan2.nextLine();
+    	    
+    	    Statement y;
+			try {
+				y = conn.createStatement();
+				y.executeQuery("DELETE FROM `orders` WHERE id_flights = '"+flightHold+"' AND id_customers = '"+flightHold+"'");
+
+				  
+	            y.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    }
+            
+ 
     
     public void reserveFlight() {
     	
 		String flightHold = null;
 		String departHold = null;
 		String chosenFlight = null;
-	    	
+		    	
         
         
     	System.out.println("MySQL connect example.");
@@ -75,9 +119,9 @@ public class Customer {
         		String destination = rz.getString("destination");
          
             	System.out.format("%s\n", destination);
-	       	
-            	
+	
         	}
+        	
             Scanner scan2 = new Scanner(System.in);
     	    System.out.println("Enter destination (available destinations are printed above): ");
     	    flightHold = scan2.nextLine();
@@ -143,23 +187,6 @@ public class Customer {
 	}
     
     public void register() {
-    	System.out.println("MySQL connect example.");
-		Connection conn = null;
-		String url = "jdbc:mysql://remotemysql.com:3306/";
-		String dbname = "ZX9ytPMHo0";
-		String driver = "com.mysql.cj.jdbc.Driver";
-		String username = "ZX9ytPMHo0"; 
-		String pass = "4HkTydGmHY";
-		try {
-			Class.forName(driver).getDeclaredConstructor().newInstance();
-			conn = DriverManager.getConnection(url+dbname, username, pass);
-			//conn.close();
-			//System.out.println("Disconnected from database");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		 // TODO Auto-generated method stub
-    	
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter First Name: ");
         this.firstName = scan.nextLine();
@@ -181,16 +208,10 @@ public class Customer {
         
         System.out.println("Enter new password: ");
         this.password = scan.nextLine();
-        
-        try {
-            
-            Statement s=conn.createStatement();
-            s.executeUpdate("INSERT INTO `customers`() VALUE (default, '"+this.firstName+"','"+this.lastName+"','"+this.Sex+"','"+this.phoneNumber+"','"+this.DOB+"','"+this.Email+"','"+this.password+"')");
-            s.close();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }    
+
+// s.executeQuery("select Name, phoneNumber, password from customers")
+        // String CustomerQuery = (SELECT Name, phoneNumber,from customers;
+       // s.executeQuery(CustomerQuery);
     }
 
     public boolean login() {
