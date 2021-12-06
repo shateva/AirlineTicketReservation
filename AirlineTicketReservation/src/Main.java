@@ -24,7 +24,10 @@ public class Main {
 			e.printStackTrace();
 		}
 		
+		
+		
 		 // TODO Auto-generated method stub
+
 		
 		String firstName = "null";
         String lastName = "null";
@@ -55,22 +58,17 @@ public class Main {
                 String userPassword = "null";
                 String id = "null";
                 
-                System.out.println(enteredEmail);
-                System.out.println(enteredPassword);
-                
                 try {
                 	Statement s=conn.createStatement();
-                	String sql = "select * from customers";
+                	String sql = "SELECT * FROM customers WHERE email = " + enteredEmail;
                     ResultSet rs = s.executeQuery(sql);
                     
                     while(rs.next()) {
                     	System.out.println(rs.getString("Email"));
                     	System.out.println(rs.getString("password"));
-                    	if (rs.getString("Email") == enteredEmail + "\n") {
-                    		if (rs.getString("password") == enteredPassword + "\n") {
-                    			System.out.println("logged in");
-                    		}
-                    	}
+                		if (rs.getString("password").equals(enteredPassword)) {
+                			System.out.println("logged in");
+                		}
                     }
                     s.close();
                 } catch (SQLException e) {
@@ -80,7 +78,7 @@ public class Main {
                       
             }
             else if (customerChoice == 2) {
-            	Customer friend1 = new Customer("Null","Null", "000", "Null", "Null", "Null", "Null");
+        		Customer friend1 = new Customer("Null","Null", "000", "Null", "Null", "Null", "Null", 0);
                 friend1.register();
                 System.out.println(friend1.getCustomer());
                 firstName = friend1.firstName;
@@ -101,12 +99,14 @@ public class Main {
             s.executeUpdate("INSERT INTO `customers`() VALUE (default, '"+firstName+"','"+lastName+"','"+Sex+"','"+number+"','"+DOB+"','"+Email+"','"+password+"')");
             
             
-//            String CustomerQuery = ("SELECT (Name, phoneNumber) from 'customers'");
-//            s.executeQuery(CustomerQuery);
-//            String sql = "select * from customers";
-//            ResultSet rs = s.executeQuery(sql);
+      	  
+//        	ResultSet rs = s.executeQuery("SELECT * FROM customers WHERE firstName = 'Shateva'");
+//        	
+//      
 //            
 //            while(rs.next()) {
+//            	int id_customer1 = rs.getInt("id_customers");
+//            	friend1.customerId = id_customer1;
 //            	String firstname1 = rs.getString("firstName");
 //            	String lastname1 = rs.getString("lastName");
 //            	String sex1 = rs.getString("Sex");
@@ -114,15 +114,28 @@ public class Main {
 //            	String DOB1 = rs.getString("DOB");
 //            	String Email1 = rs.getString("Email");
 //            	String Password1 = rs.getString("password");
-//            	
-//            	System.out.format("%s, %s\n", firstname1, lastname1, sex1, number1, DOB1, Email1, Password1);
 //            }
             s.close();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-		
+   
+        Scanner scan6 = new Scanner(System.in);
+        System.out.println("Type '1' to reserve a flight | Type '2' to cancel a flight | Type '3' to see all flights:  ");
+        int answer = scan6.nextInt();
+        if (answer == 1){
+//        	friend1.reserveFlight();
+        } else if (answer == 2) {
+        	System.out.println("Cancel Flight");
+        } else if (answer == 3) {
+        	System.out.println("See all flights");
+        }else {
+        	System.out.println("Invalid Choice");
+        }
+        
+        
+        
 	}
 
 }
