@@ -63,7 +63,7 @@ public class Main {
                 
                 try {
                 	Statement s=conn.createStatement();
-                	String sql = "SELECT * FROM customers WHERE email = " + enteredEmail;
+                	String sql = "SELECT * FROM customers WHERE email =  '"+enteredEmail+"'";
                     ResultSet rs = s.executeQuery(sql);
                     
                     while(rs.next()) {
