@@ -78,7 +78,7 @@ public class Main {
                     e.printStackTrace();
                 }
                 if (loggedIn == 1){
-                    System.out.println("Type '1' to reserve a flight | Type '2' to cancel a flight | Type '3' to see all flights:  ");
+                    System.out.println("Type '1' to reserve a flight | Type '2' to cancel a flight | Type '3' to see all ordered flights:  ");
                     int answer = scans.nextInt();
                 	if (answer == 1){
                     	friend1.reserveFlight();
