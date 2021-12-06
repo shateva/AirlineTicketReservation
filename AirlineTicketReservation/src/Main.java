@@ -20,8 +20,13 @@ public class Main {
 			e.printStackTrace();
 		}
 		
+		
+		
 		 // TODO Auto-generated method stub
 		Customer friend1 = new Customer("Null","Null", "000", "Null", "Null", "Null", "Null");
+		
+		friend1.reserveFlight();
+		/*
         friend1.register();
         System.out.println(friend1.getCustomer());
         String firstName = friend1.firstName;
@@ -59,6 +64,8 @@ public class Main {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        
+        */
 		
 	}
 

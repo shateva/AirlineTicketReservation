@@ -1,3 +1,8 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class Customer {
@@ -27,6 +32,68 @@ public class Customer {
 		this.password = password;
 		
 	}
+    
+    
+    public String reserveFlight() {
+    	
+String flightHold = null;
+    	
+    	Scanner scan2 = new Scanner(System.in);
+        System.out.println("Enter destination: ");
+        flightHold = scan2.nextLine();
+    	
+        
+        
+    	System.out.println("MySQL connect example.");
+		Connection conn = null;
+		String url = "jdbc:mysql://remotemysql.com:3306/";
+		String dbname = "ZX9ytPMHo0";
+		String driver = "com.mysql.cj.jdbc.Driver";
+		String username = "ZX9ytPMHo0"; 
+		String pass = "4HkTydGmHY";
+		try {
+			Class.forName(driver).getDeclaredConstructor().newInstance();
+			conn = DriverManager.getConnection(url+dbname, username, pass);
+			System.out.println("Connected to the database");
+			//conn.close();
+			//System.out.println("Disconnected from database");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		 // TODO Auto-generated method stub
+        try {
+            
+        	Statement s=conn.createStatement();
+  
+        	ResultSet rs = s.executeQuery("SELECT * FROM flights WHERE destination = '"+flightHold+"'");
+        	
+
+        	
+        	while (rs.next()) {
+        		String destination = rs.getString("destination");
+            	String departureLoc = rs.getString("departureLoc");
+            	String departureTime = rs.getString("departureTime");
+            	String arrivalTime = rs.getString("arrivalTime");
+            	String duration = rs.getString("duration");
+            	String date = rs.getString("date");
+            	String seats = rs.getString("seats");
+            	
+            	System.out.format("%s, %s, %s, %s, %s, %s, %s\n", destination, departureLoc, departureTime, arrivalTime, duration, date, seats);
+        	   
+        	}
+        	
+            s.close();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+
+    
+        
+    	return "Your flight has been reserved";
+    }
     
     
     public String getCustomer(){
