@@ -31,7 +31,6 @@ public class Main {
 		
 		
         friend1.register();
-        System.out.println(friend1.getCustomer());
         String firstName = friend1.firstName;
         String lastName = friend1.lastName;
         String Sex = friend1.Sex;

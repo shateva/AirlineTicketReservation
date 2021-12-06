@@ -3,6 +3,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Customer {
@@ -42,14 +44,6 @@ public class Customer {
 String flightHold = null;
 String departHold = null;
 String chosenFlight = null;
-
-    	
-    	Scanner scan2 = new Scanner(System.in);
-        System.out.println("Enter destination: ");
-        flightHold = scan2.nextLine();
-        Scanner scan3 = new Scanner(System.in);
-        System.out.println("Enter departure location: ");
-        departHold = scan3.nextLine();
     	
         
         
@@ -63,22 +57,54 @@ String chosenFlight = null;
 		try {
 			Class.forName(driver).getDeclaredConstructor().newInstance();
 			conn = DriverManager.getConnection(url+dbname, username, pass);
-			System.out.println("Connected to the database");
 			//conn.close();
 			//System.out.println("Disconnected from database");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		 // TODO Auto-generated method stub
-        try {
-            
+		
+		
+    	
+		
+		try {
+			Statement z=conn.createStatement();
+			ResultSet rz = z.executeQuery("SELECT destination FROM flights");
+		
+        	while (rz.next()) {
+        		String destination = rz.getString("destination");
+         
+            	System.out.format("%s\n", destination);
+	       	
+            	
+        	}
+            Scanner scan2 = new Scanner(System.in);
+    	    System.out.println("Enter destination (available destinations are printed above): ");
+    	    flightHold = scan2.nextLine();
+    	    
+    	    Statement y=conn.createStatement();
+			ResultSet ry = y.executeQuery("SELECT departureLoc FROM flights WHERE destination = '"+flightHold+"' ");
+			
+		
+        	while (ry.next()) {
+        		String depart = ry.getString("departureLoc");
+         
+            	System.out.format("%s\n", depart);
+        	}
+        	
+        	
+	        Scanner scan3 = new Scanner(System.in);
+	        System.out.println("Enter departure location (available departure locations are printed above): ");
+	        departHold = scan3.nextLine();
+			
+			
         	Statement s=conn.createStatement();
   
         	ResultSet rs = s.executeQuery("SELECT * FROM flights WHERE destination = '"+flightHold+"' AND departureLoc = '"+departHold+"'");
         	
         	while (rs.next()) {
         		int id_flights = rs.getInt("id_flights");
-        		String destination = rs.getString("destination");
+        		String destination2 = rs.getString("destination");
             	String departureLoc = rs.getString("departureLoc");
             	String departureTime = rs.getString("departureTime");
             	String arrivalTime = rs.getString("arrivalTime");
@@ -86,9 +112,11 @@ String chosenFlight = null;
             	String date = rs.getString("date");
             	String seats = rs.getString("seats");
             	
-            	System.out.format("%d, %s, %s, %s, %s, %s, %s, %s\n", id_flights, destination, departureLoc, departureTime, arrivalTime, duration, date, seats);
+            	System.out.format("%d, %s, %s, %s, %s, %s, %s, %s\n", id_flights, destination2, departureLoc, departureTime, arrivalTime, duration, date, seats);
 
         	}
+        	
+      
         	
         	Scanner scan4 = new Scanner(System.in);
             System.out.println("Enter the number of the flight you want to reserve a seat for:  ");
