@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.Scanner;
 
 public class Main {
 	
@@ -60,10 +61,6 @@ public class Main {
             	String DOB1 = rs.getString("DOB");
             	String Email1 = rs.getString("Email");
             	String Password1 = rs.getString("password");
-            	
-           
-            	
-            	System.out.format("%s, %s\n", firstname1, lastname1, sex1, number1, DOB1, Email1, Password1);
             }
             s.close();
         } catch (SQLException e) {
@@ -71,7 +68,21 @@ public class Main {
             e.printStackTrace();
         }
    
-        friend1.reserveFlight();
+        Scanner scan6 = new Scanner(System.in);
+        System.out.println("Type '1' to reserve a flight | Type '2' to cancel a flight | Type '3' to see all flights:  ");
+        int answer = scan6.nextInt();
+        if (answer == 1){
+        	friend1.reserveFlight();
+        } else if (answer == 2) {
+        	System.out.println("Cancel Flight");
+        } else if (answer == 3) {
+        	System.out.println("See all flights");
+        }else {
+        	System.out.println("Invalid Choice");
+        }
+        
+        
+        
 	}
 
 }

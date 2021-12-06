@@ -37,15 +37,19 @@ public class Customer {
 	}
     
     
-    public String reserveFlight() {
+    public void reserveFlight() {
     	
 String flightHold = null;
+String departHold = null;
 String chosenFlight = null;
-String id_flights2 = null;
+
     	
     	Scanner scan2 = new Scanner(System.in);
         System.out.println("Enter destination: ");
         flightHold = scan2.nextLine();
+        Scanner scan3 = new Scanner(System.in);
+        System.out.println("Enter departure location: ");
+        departHold = scan3.nextLine();
     	
         
         
@@ -70,7 +74,7 @@ String id_flights2 = null;
             
         	Statement s=conn.createStatement();
   
-        	ResultSet rs = s.executeQuery("SELECT * FROM flights WHERE destination = '"+flightHold+"'");
+        	ResultSet rs = s.executeQuery("SELECT * FROM flights WHERE destination = '"+flightHold+"' AND departureLoc = '"+departHold+"'");
         	
         	while (rs.next()) {
         		int id_flights = rs.getInt("id_flights");
@@ -86,9 +90,9 @@ String id_flights2 = null;
 
         	}
         	
-        	Scanner scan3 = new Scanner(System.in);
+        	Scanner scan4 = new Scanner(System.in);
             System.out.println("Enter the number of the flight you want to reserve a seat for:  ");
-            chosenFlight = scan3.nextLine();
+            chosenFlight = scan4.nextLine();
             
             
             s.executeUpdate("INSERT INTO `orders`() VALUE (default, '"+this.customerId+"', '"+chosenFlight+"')");
@@ -102,7 +106,7 @@ String id_flights2 = null;
 
     
         
-    	return "Your flight has been reserved";
+    	System.out.println("Your flight has been reserved");
     }
     
     
