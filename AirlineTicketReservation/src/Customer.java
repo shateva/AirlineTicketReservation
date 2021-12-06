@@ -41,10 +41,10 @@ public class Customer {
     
     public void reserveFlight() {
     	
-String flightHold = null;
-String departHold = null;
-String chosenFlight = null;
-    	
+		String flightHold = null;
+		String departHold = null;
+		String chosenFlight = null;
+		    	
         
         
     	System.out.println("MySQL connect example.");

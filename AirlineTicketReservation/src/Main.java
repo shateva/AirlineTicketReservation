@@ -36,7 +36,10 @@ public class Main {
         String DOB = "null";
         String Email = "null";
         String password = "null";
-
+        
+        int loggedIn = 0;
+        Customer friend1 = new Customer("Null","Null", "000", "Null", "Null", "Null", "Null", 0);
+        
 		Scanner scan = new Scanner(System.in);
         System.out.println("Customer or Admin (1 or 2)");
         int choice = scan.nextInt();
@@ -64,10 +67,9 @@ public class Main {
                     ResultSet rs = s.executeQuery(sql);
                     
                     while(rs.next()) {
-                    	System.out.println(rs.getString("Email"));
-                    	System.out.println(rs.getString("password"));
                 		if (rs.getString("password").equals(enteredPassword)) {
                 			System.out.println("logged in");
+                			loggedIn = 1;
                 		}
                     }
                     s.close();
@@ -75,10 +77,49 @@ public class Main {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
+                if (loggedIn == 1){
+                    System.out.println("Type '1' to reserve a flight | Type '2' to cancel a flight | Type '3' to see all flights:  ");
+                    int answer = scans.nextInt();
+                	if (answer == 1){
+                    	friend1.reserveFlight();
+                    } else if (answer == 2) {
+                    	System.out.println("Cancel Flight");
+                    } else if (answer == 3) {
+                    	System.out.println("Enter Destination");
+                        String enteredDestination = scans.nextLine();
+                        
+                        try {
+                        	Statement s=conn.createStatement();
+                        	String sql = "SELECT * FROM flights";
+                            ResultSet rs = s.executeQuery(sql);
+                            
+                            while(rs.next()) {
+                        		String flightId = rs.getString("id_flights");
+                        		String flightDestination = rs.getString("destination");
+                        		String flightDeparture = rs.getString("departureLoc");
+                        		String flightDepartureTime = rs.getString("departureTime");
+                        		String flightArrivalTime = rs.getString("arrivalTime");
+                        		String flightDuration = rs.getString("duration");
+                        		String flightDate = rs.getString("date");
+                        		String flightSeats = rs.getString("seats");
+                        		
+                        		System.out.println("ID | Destination | Departure | Departure | Time | Arrival | Time | Duration | Date | Seats");
+                        		System.out.format("%s | %s | %s | %s | %s | %s | %s | %s\n", flightId, flightDestination, flightDeparture, flightDepartureTime, flightArrivalTime, flightDuration, flightDate, flightSeats);
+                   
+                            }
+                            s.close();
+                        } catch (SQLException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    	
+                    }else {
+                    	System.out.println("Invalid Choice");
+                    }
+                }
                       
             }
             else if (customerChoice == 2) {
-        		Customer friend1 = new Customer("Null","Null", "000", "Null", "Null", "Null", "Null", 0);
                 friend1.register();
                 System.out.println(friend1.getCustomer());
                 firstName = friend1.firstName;
@@ -88,53 +129,20 @@ public class Main {
                 DOB = friend1.DOB;
                 Email = friend1.Email;
                 password = friend1.password;
+                
+                try {
+                    
+                    Statement s=conn.createStatement();
+                    s.executeUpdate("INSERT INTO `customers`() VALUE (default, '"+firstName+"','"+lastName+"','"+Sex+"','"+number+"','"+DOB+"','"+Email+"','"+password+"')");
+                    s.close();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }    
             }
-        }else {
+        }else if (choice == 2){
         	System.out.println("working");
         }
-
-        try {
-            
-            Statement s=conn.createStatement();
-            s.executeUpdate("INSERT INTO `customers`() VALUE (default, '"+firstName+"','"+lastName+"','"+Sex+"','"+number+"','"+DOB+"','"+Email+"','"+password+"')");
-            
-            
-      	  
-//        	ResultSet rs = s.executeQuery("SELECT * FROM customers WHERE firstName = 'Shateva'");
-//        	
-//      
-//            
-//            while(rs.next()) {
-//            	int id_customer1 = rs.getInt("id_customers");
-//            	friend1.customerId = id_customer1;
-//            	String firstname1 = rs.getString("firstName");
-//            	String lastname1 = rs.getString("lastName");
-//            	String sex1 = rs.getString("Sex");
-//            	String number1 = rs.getString("phoneNumber");
-//            	String DOB1 = rs.getString("DOB");
-//            	String Email1 = rs.getString("Email");
-//            	String Password1 = rs.getString("password");
-//            }
-            s.close();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-   
-        Scanner scan6 = new Scanner(System.in);
-        System.out.println("Type '1' to reserve a flight | Type '2' to cancel a flight | Type '3' to see all flights:  ");
-        int answer = scan6.nextInt();
-        if (answer == 1){
-//        	friend1.reserveFlight();
-        } else if (answer == 2) {
-        	System.out.println("Cancel Flight");
-        } else if (answer == 3) {
-        	System.out.println("See all flights");
-        }else {
-        	System.out.println("Invalid Choice");
-        }
-        
-        
         
 	}
 
