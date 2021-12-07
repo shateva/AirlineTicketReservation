@@ -102,7 +102,8 @@ public class Flight {
                 	ResultSet nrs = n.executeQuery(sql2);
                 	
                 	while(nrs.next()) {
-                		System.out.println(nrs.getString("id_flights"));
+                		System.out.println("ID | Destination | Departure | Departure | Time | Arrival | Time | Duration | Date | Seats");
+                		System.out.format("%s | %s | %s | %s | %s | %s | %s | %s\n", nrs.getString("id_flights"), nrs.getString("destination"), nrs.getString("departureLoc"), nrs.getString("departureTime"), nrs.getString("arrivalTime"), nrs.getString("duration"), nrs.getString("date"), nrs.getString("seats"));
                 	}
                 	
                 
