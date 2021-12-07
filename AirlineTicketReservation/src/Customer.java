@@ -111,42 +111,44 @@ public class Customer {
     	
 		
 		try {
-			Statement z=conn.createStatement();
-            ResultSet rz = z.executeQuery("SELECT destination FROM flights WHERE seats > 0");
-        
-            String holdCurrDest = "";
+			 Statement z=conn.createStatement();
+             ResultSet rz = z.executeQuery("SELECT destination FROM flights WHERE seats > 0");
+         
+             String holdCurrDest = "";
+             
+            while (rz.next()) {
+                String destination = rz.getString("destination");
+                if (holdCurrDest.contains(destination) == false) {
+                    holdCurrDest += destination;
+                    System.out.format(" %s |", destination);
+                }
+            }
             
-           while (rz.next()) {
-               String destination = rz.getString("destination");
-               if (holdCurrDest.contains(destination) == false) {
-                   holdCurrDest += destination;
-                   System.out.format(" %s |", destination);
-               }
-           }
-           
-           
-           Scanner scan2 = new Scanner(System.in);
-           System.out.println("\nEnter destination (available destinations are printed above): ");
-           flightHold = scan2.nextLine();
-           
-           String holdCurrDepart = "";
-           
-           Statement t=conn.createStatement();
-           ResultSet tz = t.executeQuery("SELECT departureLoc FROM flights WHERE destination = '"+flightHold+"' AND seats > 0");
-           
-           while (tz.next()) {
-               String departureLoc = tz.getString("departureLoc");
-               if (holdCurrDepart.contains(departureLoc) == false && departureLoc != flightHold) {
-                   holdCurrDepart += departureLoc;
-                   System.out.format(" %s | ", departureLoc);
-               }
-  
-           }
-           
-        	
-	        Scanner scan3 = new Scanner(System.in);
-	        System.out.println("Enter departure location (available departure locations are printed above): ");
-	        departHold = scan3.nextLine();
+            
+            Scanner scan2 = new Scanner(System.in);
+            System.out.println("\nEnter destination (available destinations are printed above): ");
+            flightHold = scan2.nextLine();
+            
+            
+            String holdCurrDepart = "";
+            
+            Statement t=conn.createStatement();
+            ResultSet tz = t.executeQuery("SELECT departureLoc FROM flights WHERE destination = '"+flightHold+"' AND seats > 0");
+            
+            while (tz.next()) {
+                String departureLoc = tz.getString("departureLoc");
+                if (holdCurrDepart.contains(departureLoc) == false && departureLoc != flightHold) {
+                    holdCurrDepart += departureLoc;
+                    System.out.format(" %s | ", departureLoc);
+                }
+   
+            }
+            
+          
+             Scanner scan3 = new Scanner(System.in);
+             System.out.println("\nEnter departure location (available departure locations are printed above): ");
+             departHold = scan3.nextLine();
+             
 			
 			
         	Statement s=conn.createStatement();
