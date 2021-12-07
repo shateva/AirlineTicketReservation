@@ -2,12 +2,10 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class Main {
-	public void login() {
-    	
-    }
 
 	public static void main(String[] args) {	
-        Customer friend1 = new Customer("Null","Null", "000", "Null", "Null", "Null", "Null", 0);
+	    
+        Customer friend1 = new Customer("Null", "Null", "000", "Null", "Null", "Null", "Null", 0);
         Flight flight1 = new Flight("Null", "Null", "Null", "Null", "Null", "Null", "Null", 0);
         Airline airline1 = new Airline("Null", "Null");
         
@@ -23,7 +21,7 @@ public class Main {
             	boolean login = friend1.login();
                 while (login){
                 	Scanner scans = new Scanner(System.in);
-                    System.out.println("Type '1' to reserve a flight | Type '2' to cancel a flight | Type '3' to see all flights:  ");
+                    System.out.println("Type '1' to reserve a flight | Type '2' to cancel a flight | Type '3' to see all flights | Press Enter to Log Out ");
                     int answer = scans.nextInt();
                 	if (answer == 1){
                     	friend1.reserveFlight();
@@ -47,7 +45,7 @@ public class Main {
         	boolean login = airline1.login();
         	while (login) {
         		Scanner scans = new Scanner(System.in); 
-        		System.out.println("Type '1' to add flight to database | Type '2' to remove flight from database | Type '3' to remove a customer:  "); 
+        		System.out.println("Type '1' to add flight to database | Type '2' to remove flight from database | Type '3' to remove a customer | Press Enter to Log Out "); 
         		int answer = scans.nextInt(); 
 
         		if (answer== 1) { 
