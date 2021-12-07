@@ -46,7 +46,7 @@ public class Customer {
 		    	
     	System.out.println("MySQL connect example.");
 		Connection conn = null;
-		String url = "jdbc:mysql://remotemysql.com:3306/";
+		String url = "jdbc:mysql://remotemysql.com:3306/autoReconnect=true";
 		String dbname = "ZX9ytPMHo0";
 		String driver = "com.mysql.cj.jdbc.Driver";
 		String username = "ZX9ytPMHo0"; 
@@ -115,30 +115,40 @@ public class Customer {
 			Statement z=conn.createStatement();
 			ResultSet rz = z.executeQuery("SELECT destination FROM flights WHERE seats > 0");
 		
+			String holdCurrDest = "";
+			
         	while (rz.next()) {
         		String destination = rz.getString("destination");
-         
-            	System.out.format("%s\n", destination);
-	
+        		if (holdCurrDest.contains(destination) == false) {
+        			holdCurrDest += destination;
+        			System.out.format(" %s |", destination);
+        		}
         	}
+        	
         	
             Scanner scan2 = new Scanner(System.in);
-    	    System.out.println("Enter destination (available destinations are printed above): ");
+    	    System.out.println("\nEnter destination (available destinations are printed above): ");
     	    flightHold = scan2.nextLine();
     	    
-    	    Statement y=conn.createStatement();
-			ResultSet ry = y.executeQuery("SELECT departureLoc FROM flights WHERE destination = '"+flightHold+"' AND seats > 0");
-			
-		
-        	while (ry.next()) {
-        		String depart = ry.getString("departureLoc");
-         
-            	System.out.format("%s\n", depart);
+    	    
+    	    
+    	    String holdCurrDepart = "";
+        	
+    	    Statement t=conn.createStatement();
+    	    ResultSet tz = t.executeQuery("SELECT departureLoc FROM flights WHERE destination = '"+flightHold+"' AND seats > 0");
+    	    
+        	while (tz.next()) {
+        		String departureLoc = tz.getString("departureLoc");
+        		if (holdCurrDepart.contains(departureLoc) == false && departureLoc != flightHold) {
+        			holdCurrDepart += departureLoc;
+        			System.out.format(" %s | ", departureLoc);
+        		}
+   
         	}
-        	
-        	
+    	    
+    	  
 	        Scanner scan3 = new Scanner(System.in);
-	        System.out.println("Enter departure location (available departure locations are printed above): ");
+	        System.out.println("\nEnter departure location (available departure locations are printed above): ");
 	        departHold = scan3.nextLine();
 			
 			
