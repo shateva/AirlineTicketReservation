@@ -165,7 +165,7 @@ public class Customer {
             	ResultSet nrs = n.executeQuery(sql2);
             	
             	while (nrs.next()) {
-            		if (nrs.getInt("id_flights") == (id_flights)) {
+            		if (nrs.getInt("id_flights") == (id_flights) && nrs.getInt("id_customers") == (this.customerId)) {
             			System.out.println("You have already booked this flight.");
             			continueFunc = 1;
             		}
