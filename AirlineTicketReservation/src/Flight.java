@@ -96,7 +96,6 @@ public class Flight {
                 ResultSet rs = s.executeQuery(sql);
                 
                 while(rs.next()) {
-                	System.out.println(rs.getString("id_flights"));
                 	String flight = rs.getString("id_flights");
                 	
                 	String sql2 = "SELECT * FROM flights WHERE id_flights =  '"+flight+"'";
