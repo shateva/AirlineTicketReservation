@@ -180,8 +180,6 @@ public class Flight {
 			}
 			 // TODO Auto-generated method stub
 			Scanner scans = new Scanner(System.in);
-	    	System.out.println("Enter Destination");
-            String enteredDestination = scans.nextLine();
             
             try {
             	Statement s=conn.createStatement();
@@ -201,25 +199,8 @@ public class Flight {
                 		System.out.format("%s | %s | %s | %s | %s | %s | %s | %s\n", nrs.getString("id_flights"), nrs.getString("destination"), nrs.getString("departureLoc"), nrs.getString("departureTime"), nrs.getString("arrivalTime"), nrs.getString("duration"), nrs.getString("date"), nrs.getString("seats"));
                 	}
                 	
-                
-                			
-                			
-//            		String flightId = rs.getString("id_flights");
-//            		String flightDestination = rs.getString("destination");
-//            		String flightDeparture = rs.getString("departureLoc");
-//            		String flightDepartureTime = rs.getString("departureTime");
-//            		String flightArrivalTime = rs.getString("arrivalTime");
-//            		String flightDuration = rs.getString("duration");
-//            		String flightDate = rs.getString("date");
-//            		String flightSeats = rs.getString("seats");
-//            		
-//            		System.out.println("ID | Destination | Departure | Departure | Time | Arrival | Time | Duration | Date | Seats");
-//            		System.out.format("%s | %s | %s | %s | %s | %s | %s | %s\n", flightId, flightDestination, flightDeparture, flightDepartureTime, flightArrivalTime, flightDuration, flightDate, flightSeats);
-                	
-//                	flights = append(flights, rs.getInt("id_flights"));
-                	
-                	n.close();
                 }
+                n.close();
                 s.close();
             } catch (SQLException e) {
                 // TODO Auto-generated catch block

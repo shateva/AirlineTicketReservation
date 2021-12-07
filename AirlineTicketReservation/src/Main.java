@@ -17,6 +17,11 @@ public class Main {
         	System.out.println("Login or Register (1 or 2)");
             int customerChoice = scan.nextInt();
             
+            if (customerChoice == 2) {
+                friend1.register();
+                System.out.println("Type 1 to log in.");
+                customerChoice = scan.nextInt();
+            }
             if (customerChoice == 1) {
             	boolean login = friend1.login();
                 while (login){
@@ -26,8 +31,9 @@ public class Main {
                 	if (answer == 1){
                     	friend1.reserveFlight();
                     } else if (answer == 2) {
+                    	flight1.getAllFlights(friend1.customerId);
                     	friend1.cancelFlight();
-                    	System.out.println("Cancel Flight");
+                    	System.out.println("Flight Cancelled Successfully");
                     } else if (answer == 3) {
                     	System.out.println("All flights");
                     	flight1.getAllFlights(friend1.customerId);
@@ -37,10 +43,6 @@ public class Main {
                 }
                 System.out.println("You have logged out!");
                       
-            }
-            else if (customerChoice == 2) {
-                friend1.register();
-//                System.out.println(friend1.getCustomer());
             }
         }else if (choice == 2){
         	boolean login = airline1.login();

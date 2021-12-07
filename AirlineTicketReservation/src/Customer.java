@@ -157,7 +157,8 @@ public class Customer {
             	String date = rs.getString("date");
             	String seats = rs.getString("seats");
             	
-            	System.out.format("%d, %s, %s, %s, %s, %s, %s, %s\n", id_flights, destination2, departureLoc, departureTime, arrivalTime, duration, date, seats);
+            	System.out.println("ID | Destination | Departure | Departure | Time | Arrival | Time | Duration | Date | Seats");
+            	System.out.format("%d | %s | %s | %s | %s | %s | %s | %s\n", id_flights, destination2, departureLoc, departureTime, arrivalTime, duration, date, seats);
 
         	}
         	
@@ -188,7 +189,6 @@ public class Customer {
 	}
     
     public void register() {
-    	System.out.println("MySQL connect example.");
 		Connection conn = null;
 		String url = "jdbc:mysql://remotemysql.com:3306/";
 		String dbname = "ZX9ytPMHo0";
@@ -242,7 +242,6 @@ public class Customer {
     
 
     public boolean login() {
-    	System.out.println("MySQL connect example.");
 		Connection conn = null;
 		String url = "jdbc:mysql://remotemysql.com:3306/";
 		String dbname = "ZX9ytPMHo0";
