@@ -85,7 +85,79 @@ public class Flight {
 	    
 	    public void deleteFlight() {
 //	    	remove flight from database
+	        
+	        String flightHold = null;
+	    	
+	    	System.out.println("MySQL connect example.");
+			Connection conn = null;
+			String url = "jdbc:mysql://remotemysql.com:3306/";
+			String dbname = "ZX9ytPMHo0";
+			String driver = "com.mysql.cj.jdbc.Driver";
+			String username = "ZX9ytPMHo0"; 
+			String pass = "4HkTydGmHY";
+			
+			
+			try {
+				Class.forName(driver).getDeclaredConstructor().newInstance();
+				conn = DriverManager.getConnection(url+dbname, username, pass);
+				//conn.close();
+				//System.out.println("Disconnected from database");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			 // TODO Auto-generated method stub
+
+	        	
+	          
+	    	    
+	    	    try {
+                	Statement s=conn.createStatement();
+                	String sql = "SELECT * FROM flights";
+                    ResultSet rs = s.executeQuery(sql);
+                    
+                    while(rs.next()) {
+                		String flightId = rs.getString("id_flights");
+                		String flightDestination = rs.getString("destination");
+                		String flightDeparture = rs.getString("departureLoc");
+                		String flightDepartureTime = rs.getString("departureTime");
+                		String flightArrivalTime = rs.getString("arrivalTime");
+                		String flightDuration = rs.getString("duration");
+                		String flightDate = rs.getString("date");
+                		String flightSeats = rs.getString("seats");
+                		
+                		System.out.println("ID | Destination | Departure | Departure | Time | Arrival | Time | Duration | Date | Seats");
+                		System.out.format("%s | %s | %s | %s | %s | %s | %s | %s\n", flightId, flightDestination, flightDeparture, flightDepartureTime, flightArrivalTime, flightDuration, flightDate, flightSeats);
+           
+                    }
+                    s.close();
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+	    	    
+	    	    Scanner scan2 = new Scanner(System.in);
+	    	    System.out.println("Enter the flight id of the flight you want to delete (flights are listed above): ");
+	    	    flightHold = scan2.nextLine();
+	    	   
+	    	    
+	    	    
+				try {
+					 
+		    	    Statement y=conn.createStatement();
+					y = conn.createStatement();
+					y.executeUpdate("DELETE FROM `flights` WHERE id_flights = '"+flightHold+"' ");
+
+					  
+		            y.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	    
+	        
+	    	
 	    }
+	    
 	    
 	    public void delayFlight() {
 	    //	System.out.println("Enter new Flight Departure Time: ");
