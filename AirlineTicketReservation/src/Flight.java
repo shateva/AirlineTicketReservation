@@ -209,9 +209,3 @@ public class Flight {
             }
 	    }
 }
-
-
-//hello
-//amir
-// beep boop
-//lets work on this rn during lecture
