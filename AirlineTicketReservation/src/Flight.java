@@ -32,6 +32,23 @@ public class Flight {
 		}
 	    
 	    public void createFlight() {
+	    	System.out.println("MySQL connect example.");
+			Connection conn = null;
+			String url = "jdbc:mysql://remotemysql.com:3306/";
+			String dbname = "ZX9ytPMHo0";
+			String driver = "com.mysql.cj.jdbc.Driver";
+			String username = "ZX9ytPMHo0"; 
+			String pass = "4HkTydGmHY";
+			try {
+				Class.forName(driver).getDeclaredConstructor().newInstance();
+				conn = DriverManager.getConnection(url+dbname, username, pass);
+				//conn.close();
+				//System.out.println("Disconnected from database");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			 // TODO Auto-generated method stub
+			
 	        Scanner scan = new Scanner(System.in);
 	        
 	        System.out.println("Enter Destination Location: ");
@@ -53,9 +70,17 @@ public class Flight {
 	        this.date = scan.nextLine();
 	        
 	        System.out.println("Enter Flight Seats: ");
-	        this.date = scan.nextLine();
-	        //System.out.println("Enter Email Address:");
-	       // this.Email = scan.nextLine();
+	        this.seats = scan.nextInt();
+	        
+	        try {
+
+	            Statement s=conn.createStatement();
+	            s.executeUpdate("INSERT INTO `flights`() VALUE (default, '"+this.destination+"','"+this.departure+"','"+this.departureTime+"','"+this.arrivalTime+"','"+this.duration+"','"+this.date+"','"+this.seats+"')");
+	            s.close();
+	        } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
 	    }
 	    
 	    public void deleteFlight() {
@@ -95,6 +120,8 @@ public class Flight {
             	String sql = "SELECT * FROM orders WHERE id_customers =  '"+customerId+"'"; 
                 ResultSet rs = s.executeQuery(sql);
                 
+                System.out.println("ID | Destination | Departure | Departure | Time | Arrival | Time | Duration | Date | Seats");
+                
                 while(rs.next()) {
                 	String flight = rs.getString("id_flights");
                 	
@@ -102,7 +129,6 @@ public class Flight {
                 	ResultSet nrs = n.executeQuery(sql2);
                 	
                 	while(nrs.next()) {
-                		System.out.println("ID | Destination | Departure | Departure | Time | Arrival | Time | Duration | Date | Seats");
                 		System.out.format("%s | %s | %s | %s | %s | %s | %s | %s\n", nrs.getString("id_flights"), nrs.getString("destination"), nrs.getString("departureLoc"), nrs.getString("departureTime"), nrs.getString("arrivalTime"), nrs.getString("duration"), nrs.getString("date"), nrs.getString("seats"));
                 	}
                 	

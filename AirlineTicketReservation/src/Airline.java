@@ -1,15 +1,15 @@
 import java.util.Scanner;
 
 public class Airline {
-	String Name;
+		String Name;
 	   //String Sex;
 	   // String DOB;
 	   // String Email;
-	    String password;
+	    String password = "admin";
 	   // int Payment;
 	   // String[] flights;
 	    
-	    public Airline(String Name, String phoneNumber, String password) {
+	    public Airline(String Name, String phoneNumber) {
 			this.Name = Name;		
 			this.password = password;
 		}
@@ -33,19 +33,16 @@ public class Airline {
 	        
 	    }
 
-	    public void login() {
-	    	Scanner scan = new Scanner(System.in);
-	    	System.out.println("Enter Name: ");
-	    	String name = scan.nextLine();
-//	    	if this.Name not in database{
-//	    		print('no user in data with that name')
-//	    	else{
-	    	System.out.println("Enter Password: ");
-	    	String password = scan.nextLine();
-//	    	if this.Password not = password{
-//	    		print('invalid password')
-//	    	else{
-//	    		allow login
+	    public boolean login() {
+	    	System.out.println("Login");
+        	Scanner scan3 = new Scanner(System.in);
+            System.out.println("Please Enter Password:");
+            String ans = scan3.nextLine();
+            
+            if (ans.equals(this.password)) {
+            	return true;
+            }
+			return false;
 	    	
 
 	    }

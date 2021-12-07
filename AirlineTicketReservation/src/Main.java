@@ -28,8 +28,7 @@ public class Main {
         int loggedIn = 0;
         Customer friend1 = new Customer("Null","Null", "000", "Null", "Null", "Null", "Null", 0);
         Flight flight1 = new Flight("Null", "Null", "Null", "Null", "Null", "Null", "Null", 0);
-//        Airline airline1 = new Airline("Null", "Null", "Null");
-        String adminPassword = "admin";
+        Airline airline1 = new Airline("Null", "Null");
         
 		Scanner scan = new Scanner(System.in);
         System.out.println("Customer or Admin (1 or 2)");
@@ -63,8 +62,21 @@ public class Main {
 //                System.out.println(friend1.getCustomer());
             }
         }else if (choice == 2){
-        	System.out.println("Login");
-        	
+        	if (airline1.login()) {
+        		Scanner scans = new Scanner(System.in); 
+        		System.out.println("Type '1' to add flight to database | Type '2' to remove flight from database | Type '3' to remove a customer:  "); 
+        		int answer = scans.nextInt(); 
+
+        		if (answer== 1) { 
+        			flight1.createFlight(); 
+        		}else if (answer == 2) { 
+        			flight1.deleteFlight(); 
+        		}else if (answer == 3) { 
+//        			airline1.removeCustomer(); 
+        		}else { 
+        			System.out.println("Invalid selection, try again"); 
+        		} 
+        	}
         }
         
 	}
