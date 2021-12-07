@@ -26,7 +26,7 @@ public class Main {
             	boolean login = friend1.login();
                 while (login){
                 	Scanner scans = new Scanner(System.in);
-                    System.out.println("Type '1' to reserve a flight | Type '2' to cancel a flight | Type '3' to see all flights | Press Enter to Log Out ");
+                    System.out.println("Type '1' to reserve a flight | Type '2' to cancel a flight | Type '3' to see all  scheduled flights | Press Enter to Log Out ");
                     int answer = scans.nextInt();
                 	if (answer == 1){
                     	friend1.reserveFlight();

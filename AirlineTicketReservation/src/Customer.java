@@ -73,6 +73,7 @@ public class Customer {
 	    	    Statement y=conn.createStatement();
 				y = conn.createStatement();
 				y.executeUpdate("DELETE FROM `orders` WHERE id_flights = '"+flightHold+"' AND id_customers = '"+this.customerId+"'");
+				y.executeUpdate("UPDATE flights SET seats = seats + 1  WHERE id_flights ='"+flightHold+"'");
 
 				  
 	            y.close();
@@ -90,9 +91,7 @@ public class Customer {
 		String departHold = null;
 		String chosenFlight = null;
 		    	
-        
-        
-    	System.out.println("MySQL connect example.");
+       
 		Connection conn = null;
 		String url = "jdbc:mysql://remotemysql.com:3306/";
 		String dbname = "ZX9ytPMHo0";
@@ -114,7 +113,7 @@ public class Customer {
 		
 		try {
 			Statement z=conn.createStatement();
-			ResultSet rz = z.executeQuery("SELECT destination FROM flights");
+			ResultSet rz = z.executeQuery("SELECT destination FROM flights WHERE seats > 0");
 		
         	while (rz.next()) {
         		String destination = rz.getString("destination");
@@ -128,7 +127,7 @@ public class Customer {
     	    flightHold = scan2.nextLine();
     	    
     	    Statement y=conn.createStatement();
-			ResultSet ry = y.executeQuery("SELECT departureLoc FROM flights WHERE destination = '"+flightHold+"' ");
+			ResultSet ry = y.executeQuery("SELECT departureLoc FROM flights WHERE destination = '"+flightHold+"' AND seats > 0");
 			
 		
         	while (ry.next()) {
@@ -145,7 +144,7 @@ public class Customer {
 			
         	Statement s=conn.createStatement();
   
-        	ResultSet rs = s.executeQuery("SELECT * FROM flights WHERE destination = '"+flightHold+"' AND departureLoc = '"+departHold+"'");
+        	ResultSet rs = s.executeQuery("SELECT * FROM flights WHERE destination = '"+flightHold+"' AND departureLoc = '"+departHold+"' AND seats > 0");
         	
         	while (rs.next()) {
         		int id_flights = rs.getInt("id_flights");
@@ -165,10 +164,10 @@ public class Customer {
       
         	
         	Scanner scan4 = new Scanner(System.in);
-            System.out.println("Enter the number of the flight you want to reserve a seat for:  ");
+            System.out.println("Enter the ID number of the flight you want to reserve a seat for:  ");
             chosenFlight = scan4.nextLine();
             
-            
+            s.executeUpdate("UPDATE flights SET seats = seats - 1 WHERE id_flights ='"+chosenFlight+"'");
             s.executeUpdate("INSERT INTO `orders`() VALUE (default, '"+this.customerId+"', '"+chosenFlight+"')");
             s.close();
             
