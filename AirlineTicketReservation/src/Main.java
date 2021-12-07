@@ -26,7 +26,7 @@ public class Main {
             	boolean login = friend1.login();
                 while (login){
                 	Scanner scans = new Scanner(System.in);
-                    System.out.println("Type '1' to reserve a flight | Type '2' to cancel a flight | Type '3' to see all  scheduled flights | Press Enter to Log Out ");
+                    System.out.println("Type '1' to reserve a flight | Type '2' to cancel a flight | Type '3' to see all  scheduled flights | Press '4' to Log Out ");
                     int answer = scans.nextInt();
                 	if (answer == 1){
                     	friend1.reserveFlight();
@@ -37,7 +37,10 @@ public class Main {
                     } else if (answer == 3) {
                     	System.out.println("All flights");
                     	flight1.getAllFlights(friend1.customerId);
-                    }else {
+                    }else if(answer == 4) {
+            			login = false;
+            		}
+                    else {
                     	System.out.println("Invalid Choice");
                     }
                 }
@@ -48,7 +51,7 @@ public class Main {
         	boolean login = airline1.login();
         	while (login) {
         		Scanner scans = new Scanner(System.in); 
-        		System.out.println("Type '1' to add flight to database | Type '2' to remove flight from database | Type '3' to remove a customer | Press Enter to Log Out "); 
+        		System.out.println("Type '1' to add flight to database | Type '2' to remove flight from database | Type '3' to remove a customer | Press '4' to Log Out "); 
         		int answer = scans.nextInt(); 
 
         		if (answer== 1) { 
@@ -57,7 +60,10 @@ public class Main {
         			flight1.deleteFlight(); 
         		}else if (answer == 3) { 
 //        			airline1.removeCustomer(); 
-        		}else { 
+        		}else if(answer == 4) {
+        			login = false;
+        		}
+        		else { 
         			System.out.println("Invalid selection, try again"); 
         		} 
         	}
