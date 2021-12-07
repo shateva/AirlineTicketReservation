@@ -44,7 +44,6 @@ public class Customer {
  
 		String flightHold = null;
 		    	
-    	System.out.println("MySQL connect example.");
 		Connection conn = null;
 		String url = "jdbc:mysql://remotemysql.com:3306/";
 		String dbname = "ZX9ytPMHo0";
@@ -143,8 +142,10 @@ public class Customer {
 			
 			
         	Statement s=conn.createStatement();
+        	Statement n = conn.createStatement();
   
         	ResultSet rs = s.executeQuery("SELECT * FROM flights WHERE destination = '"+flightHold+"' AND departureLoc = '"+departHold+"' AND seats > 0");
+        	int continueFunc = 0;
         	
         	while (rs.next()) {
         		int id_flights = rs.getInt("id_flights");
@@ -158,28 +159,39 @@ public class Customer {
             	
             	System.out.println("ID | Destination | Departure | Departure | Time | Arrival | Time | Duration | Date | Seats");
             	System.out.format("%d | %s | %s | %s | %s | %s | %s | %s\n", id_flights, destination2, departureLoc, departureTime, arrivalTime, duration, date, seats);
+            	
+            	
+            	String sql2 = "SELECT * FROM orders";
+            	ResultSet nrs = n.executeQuery(sql2);
+            	
+            	while (nrs.next()) {
+            		if (nrs.getInt("id_flights") == (id_flights)) {
+            			System.out.println("You have already booked this flight.");
+            			continueFunc = 1;
+            		}
+            	}
+            	
+            	
 
         	}
         	
       
-        	
-        	Scanner scan4 = new Scanner(System.in);
-            System.out.println("Enter the ID number of the flight you want to reserve a seat for:  ");
-            chosenFlight = scan4.nextLine();
-            
-            s.executeUpdate("UPDATE flights SET seats = seats - 1 WHERE id_flights ='"+chosenFlight+"'");
-            s.executeUpdate("INSERT INTO `orders`() VALUE (default, '"+this.customerId+"', '"+chosenFlight+"')");
+        	if (continueFunc == 0) {
+	        	Scanner scan4 = new Scanner(System.in);
+	            System.out.println("Enter the ID number of the flight you want to reserve a seat for:  ");
+	            chosenFlight = scan4.nextLine();
+	            
+	            s.executeUpdate("UPDATE flights SET seats = seats - 1 WHERE id_flights ='"+chosenFlight+"'");
+	            s.executeUpdate("INSERT INTO `orders`() VALUE (default, '"+this.customerId+"', '"+chosenFlight+"')");
+	            System.out.println("Your flight has been reserved");
+        	}
+            n.close();         
             s.close();
             
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
-
-    
-        
-    	System.out.println("Your flight has been reserved");
     }
     
     
