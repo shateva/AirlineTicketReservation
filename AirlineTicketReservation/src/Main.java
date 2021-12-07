@@ -51,15 +51,13 @@ public class Main {
         	boolean login = airline1.login();
         	while (login) {
         		Scanner scans = new Scanner(System.in); 
-        		System.out.println("Type '1' to add flight to database | Type '2' to remove flight from database | Type '3' to remove a customer | Press '4' to Log Out "); 
+        		System.out.println("Type '1' to add flight to database | Type '2' to remove flight from database | Press '4' to Log Out "); 
         		int answer = scans.nextInt(); 
 
         		if (answer== 1) { 
         			flight1.createFlight(); 
         		}else if (answer == 2) { 
         			flight1.deleteFlight(); 
-        		}else if (answer == 3) { 
-//        			airline1.removeCustomer(); 
         		}else if(answer == 4) {
         			login = false;
         		}
