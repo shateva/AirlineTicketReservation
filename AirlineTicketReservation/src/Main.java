@@ -35,6 +35,7 @@ public class Main {
                     	System.out.println("Invalid Choice");
                     }
                 }
+                System.out.println("You have logged out!");
                       
             }
             else if (customerChoice == 2) {
@@ -58,6 +59,7 @@ public class Main {
         			System.out.println("Invalid selection, try again"); 
         		} 
         	}
+        	System.out.println("You have logged out!");
         }
         
 	}
