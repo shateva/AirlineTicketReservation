@@ -7,24 +7,7 @@ public class Main {
     }
 
 	public static void main(String[] args) {	
-		System.out.println("MySQL connect example.");
-		Connection conn = null;
-		String url = "jdbc:mysql://remotemysql.com:3306/";
-		String dbname = "ZX9ytPMHo0";
-		String driver = "com.mysql.cj.jdbc.Driver";
-		String username = "ZX9ytPMHo0"; 
-		String pass = "4HkTydGmHY";
-		try {
-			Class.forName(driver).getDeclaredConstructor().newInstance();
-			conn = DriverManager.getConnection(url+dbname, username, pass);
-			System.out.println("Connected to the database");
-			//conn.close();
-			//System.out.println("Disconnected from database");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		
-        
         int loggedIn = 0;
         Customer friend1 = new Customer("Null","Null", "000", "Null", "Null", "Null", "Null", 0);
         Flight flight1 = new Flight("Null", "Null", "Null", "Null", "Null", "Null", "Null", 0);

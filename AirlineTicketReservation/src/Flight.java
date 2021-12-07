@@ -32,7 +32,6 @@ public class Flight {
 		}
 	    
 	    public void createFlight() {
-	    	System.out.println("MySQL connect example.");
 			Connection conn = null;
 			String url = "jdbc:mysql://remotemysql.com:3306/";
 			String dbname = "ZX9ytPMHo0";
@@ -87,8 +86,7 @@ public class Flight {
 //	    	remove flight from database
 	        
 	        String flightHold = null;
-	    	
-	    	System.out.println("MySQL connect example.");
+	   
 			Connection conn = null;
 			String url = "jdbc:mysql://remotemysql.com:3306/";
 			String dbname = "ZX9ytPMHo0";
@@ -147,7 +145,7 @@ public class Flight {
 					y = conn.createStatement();
 					y.executeUpdate("DELETE FROM `flights` WHERE id_flights = '"+flightHold+"' ");
 
-					  
+					System.out.println("This flight has been deleted");
 		            y.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -166,7 +164,6 @@ public class Flight {
 	    }
 	    
 	    public void getAllFlights(int customerId) {
-	    	System.out.println("MySQL connect example.");
 			Connection conn = null;
 			String url = "jdbc:mysql://remotemysql.com:3306/";
 			String dbname = "ZX9ytPMHo0";
