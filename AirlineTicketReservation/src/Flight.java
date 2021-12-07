@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Flight {
@@ -90,10 +91,24 @@ public class Flight {
             
             try {
             	Statement s=conn.createStatement();
-            	String sql = "SELECT * FROM orders WHERE id_customers =  '"+customerId+"'";
+            	Statement n = conn.createStatement();
+            	String sql = "SELECT * FROM orders WHERE id_customers =  '"+customerId+"'"; 
                 ResultSet rs = s.executeQuery(sql);
                 
                 while(rs.next()) {
+                	System.out.println(rs.getString("id_flights"));
+                	String flight = rs.getString("id_flights");
+                	
+                	String sql2 = "SELECT * FROM flights WHERE id_flights =  '"+flight+"'";
+                	ResultSet nrs = n.executeQuery(sql2);
+                	
+                	while(nrs.next()) {
+                		System.out.println(nrs.getString("id_flights"));
+                	}
+                	
+                
+                			
+                			
 //            		String flightId = rs.getString("id_flights");
 //            		String flightDestination = rs.getString("destination");
 //            		String flightDeparture = rs.getString("departureLoc");
@@ -106,13 +121,15 @@ public class Flight {
 //            		System.out.println("ID | Destination | Departure | Departure | Time | Arrival | Time | Duration | Date | Seats");
 //            		System.out.format("%s | %s | %s | %s | %s | %s | %s | %s\n", flightId, flightDestination, flightDeparture, flightDepartureTime, flightArrivalTime, flightDuration, flightDate, flightSeats);
                 	
+//                	flights = append(flights, rs.getInt("id_flights"));
                 	
-       
+                	n.close();
                 }
                 s.close();
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+                
             }
 	    }
 }

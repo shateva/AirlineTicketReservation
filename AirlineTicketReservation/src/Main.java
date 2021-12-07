@@ -28,7 +28,7 @@ public class Main {
         int loggedIn = 0;
         Customer friend1 = new Customer("Null","Null", "000", "Null", "Null", "Null", "Null", 0);
         Flight flight1 = new Flight("Null", "Null", "Null", "Null", "Null", "Null", "Null", 0);
-        Airline airline1 = new Airline("Null", "Null", "Null");
+//        Airline airline1 = new Airline("Null", "Null", "Null");
         
 		Scanner scan = new Scanner(System.in);
         System.out.println("Customer or Admin (1 or 2)");
